@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    <a style="color:rgb(121, 95, 26);" href="{{ url('/categorys/create')}}">Create category</a>
+    <a style="color:rgb(121, 95, 26);" href="{{ url('/categories/create')}}">Create category</a>
     <table class="table table-bordered table-hover gray">
         <thead class="thead-dark">
         <tr>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Post;
 // use App\Http\Requests\StoreCategoryRequest;
 // use App\Http\Requests\UpdateCategoryRequest;
 use Illuminate\Http\Request;
@@ -41,12 +42,30 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+
+
+        $submitB = $request->submitB;
+
         $category = new Category;
         $category->title = $request->category_title;
         $category->description = $request->category_description;
-
-
         $category->save();
+
+
+        $postInputCount = count($request->post_title);
+
+
+
+        if($submitB == "remove") {
+
+            for($i = 0 ; $i < $postInputCount ; $i++) {
+                $post = new Post;
+                $post->title = $request->post_title[$i];
+                $post->text = $request->post_text[$i];
+                $post->category_id = $category->id;
+                $post->save();
+            }
+        }
 
         return redirect()->route("category.index");
     }
