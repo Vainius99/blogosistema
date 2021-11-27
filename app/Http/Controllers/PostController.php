@@ -128,4 +128,24 @@ class PostController extends Controller
         $post->delete();
         return redirect()->route('post.index');
     }
+
+    public function destroyAjax(Post $post)
+    {
+
+
+        $category_id = $post->category_id;
+
+        $post->delete();
+
+        $postsLeft = Post::where('category_id', $category_id)->get() ;
+        $postCount = $postsLeft->count();
+
+        $success = [
+            "success" => "The Post deleted successfuly",
+            "postCount" => $postCount
+        ];
+        $success_json = response()->json($success);
+
+        return $success_json;
+    }
 }

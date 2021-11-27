@@ -37,6 +37,7 @@ Route::prefix('posts')->group(function () {
     Route::get('edit/{post}', 'App\Http\Controllers\PostController@edit')->name('post.edit')->middleware("auth");
     Route::post('update/{post}', 'App\Http\Controllers\PostController@update')->name('post.update')->middleware("auth");
     Route::post('delete/{post}', 'App\Http\Controllers\PostController@destroy')->name('post.destroy')->middleware("auth");
+    Route::post('deleteAjax/{post}', 'App\Http\Controllers\PostController@destroyAjax' )->name('post.destroyAjax');
     Route::get('show/{post}', 'App\Http\Controllers\PostController@show')->name('post.show')->middleware("auth");
 });
 

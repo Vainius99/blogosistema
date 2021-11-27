@@ -17,4 +17,8 @@ class Category extends Model
     protected $fillable = ['title', 'description'];
 
     public $sortable = ['id', 'title', 'description'];
+
+    public function categoryPost() {
+        return $this->hasMany(Post::class, 'category_id', 'id');
+    }
 }

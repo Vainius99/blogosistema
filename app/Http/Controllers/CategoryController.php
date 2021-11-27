@@ -78,7 +78,12 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return view('category.show', ['category' => $category]);
+        $posts = $category->categoryPost; //masyvas su visais klientais priklausanciais kompanijai
+        $postCount = $posts->count();
+
+
+        return view("category.show",['category' => $category, 'posts'=>$posts, 'postCount'=> $postCount]);
+
     }
 
     /**
